@@ -1,26 +1,5 @@
-<div class="cover-container">
-          <div class="inner cover">
-            <h1 class="cover-heading">Choose and order your lunch</h1>
-            <p class="lead">What could be better than to order a lunch? We also think that nothing and are ready to help you in your choice. Our service allows you to pick lunch to your taste. First course, main course and drink.</p>
-            <p class="lead">
-              <a href= <%= new_user_registration_path%> class="btn btn-lg btn-light">Try now!</a>
-            </p>
-          </div>
-</div>
-
-<style type="text/css">
-
-body {
-          background: url(/assets/background5.jpg) no-repeat center center fixed;
-          background-size: cover;
-}
-
-div.cover-container {
-  width: 60%;
-  color: #fff;
-  margin: 15% auto;
-}
-p.lead{
-	font-size: 100%
-}
-</style>
+<% if user_signed_in? && current_user.customer? %>
+	<%= render 'customer'%>
+<% else %>
+	<%= render 'visitor' %>
+<% end %>
