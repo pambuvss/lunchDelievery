@@ -10,9 +10,14 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <a class="nav-link" href="/">Home
-                </a>
+                <a class="nav-link" href="/">Home </a>
               </li>
+
+              <% if current_user.seller?%>
+              <li class="nav-item">
+                <a class="nav-link" href=<%= customers_path %>>Customers </a>
+              </li>                
+              <% end %>
               <li class="dropdown">
                 <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link">
                   <%= current_user.role + " " + current_user.name%> 
