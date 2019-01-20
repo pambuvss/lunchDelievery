@@ -4,8 +4,11 @@ feature 'User try to watch list of customers' do
   
   scenario 'by seller account' do
     sign_up_with 'test@test.com', 'Vasya', 'password', 'password'
+    restaurant = Restaurant.new name: "restaurant"
+    restaurant.save
     user = User.find_by email: 'test@test.com'
     user.role = :seller
+    user.restaurant_id = restaurant.id
     user.save
     visit customers_path
     expect(page).to have_content('List of customers')
