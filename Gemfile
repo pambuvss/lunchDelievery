@@ -5,6 +5,7 @@ ruby '2.4.1'
 
 gem 'devise'
 gem 'bootstrap'
+gem 'will_paginate', '~> 3.1.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
