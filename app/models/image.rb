@@ -2,7 +2,7 @@ class Image < ApplicationRecord
   belongs_to :food_item, inverse_of: :images
   has_attached_file \
     :photo,
-    styles: { thumb: ['100x100#', 'jpg'] },
+    styles: { thumb: ['100x100#', 'jpg'] , average: ['500x500>', 'jpg']},
     convert_options: {
       all: '-interlace Plane'
     },

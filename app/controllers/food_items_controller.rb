@@ -4,6 +4,7 @@ class FoodItemsController < ApplicationController
   end
 
   def show
+    @food_item = FoodItem.find(params[:id])
   end
 
   def new
@@ -14,6 +15,14 @@ class FoodItemsController < ApplicationController
   end
 
   def create
+    @food_item = FoodItem.new(food_item_params)
+    @food_item.restaurant = current_user.restaurant
+    if @food_item.save
+      save_photos
+      redirect_to @food_item
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -25,7 +34,15 @@ class FoodItemsController < ApplicationController
 private
 
   def food_item_params
-    params.require(:food_item).permit(:name, :price, :breakf,
-                                  :descr, :photo, :addr1, :addr2, :addr3, :addr4, :rate, :price)
+    params.require(:food_item).permit([:name, :price, :type_of_course,
+     images: 
+      [:id, :food_item_id, :photo]])
   end
+
+  def save_photos
+    params[:images]['photo'].each do |a|
+          @food_item.images.create!(:photo => a, :food_item_id => @food_item.id)
+       end
+  end
+
 end

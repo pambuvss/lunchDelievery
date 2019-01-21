@@ -1,17 +1,10 @@
-<style type="text/css">
-  .food-form {
-    width: 30%;
-    margin-right: auto;
-    margin-left: auto;
-  }
-</style>
 <h1>Add food for today</h1> 
 <%= simple_form_for @food_item, :html => {:multipart => true}, local: true do |form| %>
 <div class = "food-form">
     <%= form.error_notification %>   
     <%= form.input :name%>  
-    <%= form.input :type, collection: [ "first", "main", "drink"]%>
-    <%= form.file_field :photo, multiple: true%>   
+    <%= form.input :type_of_course, collection: [ "first_course", "main_course", "drink"]%>
+    <%= form.file_field :images, multiple: true, name: "images[photo][]"%>   
     <%= form.input :price%>  
     <%= form.submit "Add food", class: "btn btn-secondary"%>  
 </div>      

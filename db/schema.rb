@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_173848) do
   create_table "food_items", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "price", null: false
-    t.integer "type", null: false
+    t.integer "type_of_course", null: false
     t.bigint "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,13 +26,14 @@ ActiveRecord::Schema.define(version: 2019_01_20_173848) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer "furniture_item_id"
+    t.bigint "food_item_id"
     t.string "photo_file_name"
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["food_item_id"], name: "index_images_on_food_item_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
