@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :customers, only: [:index]
   resources :food_items
-  
+  resources :menu, only: [:index]
+  resources :restaurants, only: [:show]
+
   root 'welcome#index'
 end

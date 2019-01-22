@@ -1,0 +1,33 @@
+<h1>let's choose restaurant:</h1>
+<div class = "container	">
+		<div class = "row">
+			<% @days.each do |day|%>
+				<% if day < Date.today %>
+					<div class = "col m-2 border-round bg-active">
+						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
+						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
+					</div>
+				<% elsif day.today?%>
+					<div class = "col m-2 border-round bg-today">
+						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
+						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
+					</div>
+				<% else %>
+					<div class = "col m-2 border-round bg-secondary">
+						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
+						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+
+	if current_user
+			get_days_of_this_week
+		end
+		@days = Array.new
+			 0.upto 6 do |i|
+			 	@days.push  (Date.today.beginning_of_week+i)
+ 			end
+ 		@days

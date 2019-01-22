@@ -40,9 +40,11 @@ private
   end
 
   def save_photos
-    params[:images]['photo'].each do |a|
-          @food_item.images.create!(:photo => a, :food_item_id => @food_item.id)
-       end
+    if params[:images]
+        params[:images]['photo'].each do |a|
+              @food_item.images.create!(:photo => a, :food_item_id => @food_item.id)
+           end
+    end
   end
 
 end

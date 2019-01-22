@@ -1,23 +1,9 @@
-<h1>let's order something:</h1>
-<div class = "container	">
-		<div class = "row">
-			<% @days.each do |day|%>
-				<% if day < Date.today %>
-					<div class = "col m-2 border-round bg-active">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
-					</div>
-				<% elsif day.today?%>
-					<div class = "col m-2 border-round bg-today">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
-					</div>
-				<% else %>
-					<div class = "col m-2 border-round bg-secondary">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
-					</div>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
+<h1>let's choose restaurant:</h1>
+
+<div class = "float-left text-left">
+<% @restaurants.each do |restaurant| %>
+	<h4>
+	<%= link_to(restaurant.name, restaurant_path(restaurant))  %>
+	</h4>
+<%end%>
+</div>
