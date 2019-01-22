@@ -10,4 +10,9 @@ class FoodItem < ApplicationRecord
   
 
   enum type_of_course: [:first_course, :main_course, :drink]
+
+  def self.by_date_and_restaurant_id date, restaurant_id
+    where(created_at: date.midnight..date.end_of_day)
+      .where restaurant_id: restaurant_id
+  end
 end

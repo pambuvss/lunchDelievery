@@ -4,12 +4,14 @@
 			<%day = Date.today.beginning_of_week+i%>
 				<% if day < Date.today %>
 					<div class = "col m-2 border-round bg-active">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
+						<%= link_to day.strftime("%a"),
+								menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id),class: "font-weight-bold"%>
 						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
 					</div>
 				<% elsif day.today?%>
 					<div class = "col m-2 border-round bg-today">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
+						<%= link_to day.strftime("%a"),
+								menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id),class: "font-weight-bold"%>
 						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
 					</div>
 				<% else %>
