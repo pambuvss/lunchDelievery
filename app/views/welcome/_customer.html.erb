@@ -2,8 +2,11 @@
 
 <div class = "float-left text-left">
 <% @restaurants.each do |restaurant| %>
-	<h4>
+	<h5>
 	<%= link_to(restaurant.name, restaurant_path(restaurant))  %>
-	</h4>
+	</h5>
 <%end%>
+<div class = "digg_pagination">
+  <%= will_paginate @restaurants %>  
+</div>
 </div>

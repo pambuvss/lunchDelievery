@@ -1,17 +1,16 @@
 class FoodItemsController < ApplicationController
-  
-  def index
-  end
+  before_action :active_user_seller?, except:[:show]
 
   def show
     @food_item = FoodItem.find(params[:id])
   end
 
   def new
-    @food_item = FoodItem.new
-  end
-
-  def edit
+    if current_user&.seller?
+      @food_item = FoodItem.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -23,12 +22,6 @@ class FoodItemsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
 private
@@ -45,6 +38,10 @@ private
               @food_item.images.create!(:photo => a, :food_item_id => @food_item.id)
            end
     end
+  end
+
+  def active_user_seller?
+    redirect_to root_path unless current_user.seller?
   end
 
 end

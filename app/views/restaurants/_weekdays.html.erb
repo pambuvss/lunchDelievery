@@ -1,7 +1,7 @@
-<h1>let's choose restaurant:</h1>
 <div class = "container	">
 		<div class = "row">
-			<% @days.each do |day|%>
+			<% 0.upto(6) do |i|%>
+			<%day = Date.today.beginning_of_week+i%>
 				<% if day < Date.today %>
 					<div class = "col m-2 border-round bg-active">
 						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
@@ -21,13 +21,3 @@
 			<% end %>
 		</div>
 	</div>
-
-
-	if current_user
-			get_days_of_this_week
-		end
-		@days = Array.new
-			 0.upto 6 do |i|
-			 	@days.push  (Date.today.beginning_of_week+i)
- 			end
- 		@days
