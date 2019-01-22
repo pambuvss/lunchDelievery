@@ -1,23 +1,41 @@
+<style type="text/css">
+a.unlink {
+  text-decoration: none;
+  color: inherit;
+}
+
+</style>
 <div class = "container	">
 		<div class = "row">
 			<% 0.upto(6) do |i|%>
 			<%day = Date.today.beginning_of_week+i%>
+				
 				<% if day < Date.today %>
-					<div class = "col m-2 border-round bg-active">
-						<%= link_to day.strftime("%a"),
-								menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id),class: "font-weight-bold"%>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
-					</div>
+					
+						<%= link_to menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id), class: "col m-2 border-round bg-active unlink" do%>
+							<h3>
+								<%= day.strftime("%a")%>	
+							</h3>
+							<h5>
+								<%= day.strftime"%d.%m.%y"%>
+							</h5>
+						<% end%>
+						
 				<% elsif day.today?%>
-					<div class = "col m-2 border-round bg-today">
-						<%= link_to day.strftime("%a"),
-								menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id),class: "font-weight-bold"%>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
-					</div>
+					
+						<%= link_to menu_path(date: day.strftime("%_m %d %y"), restaurant_id: @restaurant.id), class: "col m-2 border-round bg-today unlink" do%>
+							<h3>
+								<%= day.strftime("%a")%>	
+							</h3>
+							<h5>
+								<%= day.strftime"%d.%m.%y"%>
+							</h5>
+						<% end%>
+
 				<% else %>
 					<div class = "col m-2 border-round bg-secondary">
-						<h3 class = "font-weight-bold"><%= day.strftime"%a"%></h3>
-						<h5 class = "font-weight-bold"><%= day.strftime"%d.%m.%y"%></h3>
+						<h3><%= day.strftime"%a"%></h3>
+						<h5><%= day.strftime"%d.%m.%y"%></h3>
 					</div>
 				<% end %>
 			<% end %>
