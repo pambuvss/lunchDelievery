@@ -15,4 +15,21 @@ class FoodItem < ApplicationRecord
     where(created_at: date.midnight..date.end_of_day)
       .where restaurant_id: restaurant_id
   end
+
+  def self.valid_for_order? first, main, drink
+    one_restaurant?(first, main, drink) &&
+    one_date?(first, main, drink)
+  end
+
+private
+
+  def self.one_restaurant? first, main, drink
+    first.restaurant == main.restaurant &&
+    main.restaurant == drink.restaurant
+  end
+
+  def self.one_date? first, main, drink
+    first.created_at.strftime("%Y-%m-%d") == main.created_at.strftime("%Y-%m-%d") &&
+    main.created_at.strftime("%Y-%m-%d")  == drink.created_at.strftime("%Y-%m-%d")
+  end  
 end

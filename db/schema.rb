@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_01_23_103819) do
     t.bigint "user_id"
     t.bigint "restaurant_id"
     t.string "address", null: false
-    t.time "delivery_time", null: false
+    t.datetime "delivery_time", null: false
     t.integer "count", null: false
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

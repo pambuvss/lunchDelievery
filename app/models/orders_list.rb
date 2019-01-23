@@ -1,2 +1,2 @@
-class OrderList < ApplicationRecord
+class OrdersList < ApplicationRecord
 end
