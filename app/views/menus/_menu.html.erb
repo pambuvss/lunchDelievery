@@ -1,3 +1,25 @@
+<script type="text/javascript">
+$( document ).ready(function() {
+	$("#proceed").removeAttr('href');
+	$('input').click(function() {
+		updateLink();
+	});
+});
+
+function updateLink(){
+	first = $('input[name=first]:checked').val();
+	main = $('input[name=main]:checked').val();
+	drink = $('input[name=drink]:checked').val()
+	if (typeof first !== 'undefined'
+	 && typeof main !== 'undefined'
+	 && typeof drink !== 'undefined') {
+    	link = '/orders/new/?first=' + first + '&main=' + main + '&drink=' + drink 
+    	$("#proceed").attr('href', link);
+	}
+}
+
+</script>
+
 <h1><%="Menu of" + " " + @restaurant.name%> </h1>
 <h2><%=@date.today? ? "For today:" : "for " + @date.strftime("%A %d.%m.%y")%></h2>
 
@@ -9,7 +31,7 @@
 		<div class = "col text-left">
 			<div class="radio">
 			<h5>
-				<label><input type="radio" name="first" 
+				<label><input type="radio" name="first" class = ""
   				value= <%= food_item.id%>>
   					<%= link_to food_item.name, food_item, class:"unlink"%>
   				</label>
@@ -56,6 +78,6 @@
 </div>
 <div class = "clearfix"></div>
 
-<a class="btn btn-secondary" href="#">Proceed to checkout</a>
+<a class="btn btn-secondary" id="proceed" href="#">Proceed to checkout</a>
 
 </div>

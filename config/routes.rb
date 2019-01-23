@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :food_items, only: [:show, :new, :create]
   resources :menus, only: [:show]
   resources :restaurants, only: [:show]
+  resources :orders, only: [:new, :create, :show]
 
   root 'welcome#index'
 end
