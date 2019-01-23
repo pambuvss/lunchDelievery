@@ -1,0 +1,61 @@
+<h1><%="Menu of" + " " + @restaurant.name%> </h1>
+<h2><%=@date.today? ? "For today:" : "for " + @date.strftime("%A %d.%m.%y")%></h2>
+
+<div class="text-left">
+	
+<h4>First course:</h4>
+<div class = "row m-3 float-left">		
+	<% @food_first.each do |food_item|%>
+		<div class = "col text-left">
+			<div class="radio">
+			<h5>
+				<label><input type="radio" name="first" 
+  				value= <%= food_item.id%>>
+  					<%= link_to food_item.name, food_item, class:"unlink"%>
+  				</label>
+			</h5>
+			</div>
+			<img src=<%= food_item.images.empty? ? '/assets/first100.jpg' : food_item.images.first.photo.url(:thumb)%>>
+			<p>price: <%= food_item.price%></p>
+		</div>
+	<% end%>
+</div>
+<div class = "clearfix"></div>
+
+<h4>Main course:</h4>
+<div class = "row m-3 float-left">		
+	<% @food_main.each do |food_item|%>
+		<div class = "col text-left">
+			<h5>
+				<label><input type="radio" name="main" 
+  				value= <%= food_item.id%>>
+  					<%= link_to food_item.name, food_item, class:"unlink"%>
+  				</label>
+			</h5>
+			<img src=<%= food_item.images.empty? ? '/assets/main100.jpg' : food_item.images.first.photo.url(:thumb)%>>
+			<p>price: <%= food_item.price%></p>
+		</div>
+	<% end%>
+</div>
+<div class = "clearfix"></div>
+
+<h4>Drink:</h4>
+<div class = "row m-3 float-left">		
+	<% @food_drink.each do |food_item|%>
+		<div class = "col text-left">
+			<h5>
+				<label><input type="radio" name="drink" 
+  				value= <%= food_item.id%>>
+  					<%= link_to food_item.name, food_item, class:"unlink"%>
+  				</label>
+			</h5>
+			<img src=<%= food_item.images.empty? ? '/assets/drink100.jpg' : food_item.images.first.photo.url(:thumb)%>>
+			<p>price: <%= food_item.price%></p>
+		</div>
+	<% end%>
+</div>
+<div class = "clearfix"></div>
+
+<a class="btn btn-secondary" href="#">Proceed to checkout</a>
+
+</div>

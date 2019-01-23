@@ -1,42 +1,5 @@
-<h1><%="Menu of" + " " + @restaurant.name%> </h1>
-<h2><%=@date.today? ? "For today:" : "for " + @date.strftime("%A %d.%m.%y")%></h2>
-
-<div class="text-left">
-	
-<h3 >First course:</h3><br>
-<div class = "row m-3 float-left">		
-	<% @food_first.each do |food_item|%>
-		<div class = "col text-left">
-			<h5><%= link_to food_item.name, food_item%></h2>
-			<img src=<%= food_item.images.empty? ? '/assets/first100.jpg' : food_item.images.first.photo.url(:thumb)%>>
-			<p>price: <%= food_item.price%></p>
-		</div>
-	<% end%>
-</div>
-<div class = "clearfix"></div>
-
-<h3 >Main course:</h3><br>
-<div class = "row m-3 float-left">		
-	<% @food_main.each do |food_item|%>
-		<div class = "col text-left">
-			<h5><%= link_to food_item.name, food_item%></h2>
-			<img src=<%= food_item.images.empty? ? '/assets/main100.jpg' : food_item.images.first.photo.url(:thumb)%>>
-			<p>price: <%= food_item.price%></p>
-		</div>
-	<% end%>
-</div>
-<div class = "clearfix"></div>
-
-<h3 >Drink:</h3><br>
-<div class = "row m-3 float-left">		
-	<% @food_drink.each do |food_item|%>
-		<div class = "col text-left">
-			<h5><%= link_to food_item.name, food_item%></h2>
-			<img src=<%= food_item.images.empty? ? '/assets/drink100.jpg' : food_item.images.first.photo.url(:thumb)%>>
-			<p>price: <%= food_item.price%></p>
-		</div>
-	<% end%>
-</div>
-<div class = "clearfix"></div>
-
-</div>
+<% if @food_first.empty? || @food_main.empty? || @food_drink.empty?%>
+	<h1>Sorry, the restaurant didn't create the full menu for that date(</h1>
+<% else %>
+	<%= render 'menu'%>
+<% end %>
