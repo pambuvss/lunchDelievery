@@ -9,6 +9,18 @@ class Order < ApplicationRecord
   	validates_associated :restaurant
   	validate :valid_delivery_date?
   	
+
+  	def self.by_restaurant_and_date restaurant, date
+  		where(restaurant: restaurant, delivery_time: date.midnight..date.end_of_day)
+  	end
+
+  	def self.total_lunches_cost restaurant, date
+  		by_restaurant_and_date(restaurant, date).inject(0) do |sum,x| 
+  			sum + x.total_price
+  		end
+  	end
+
+
   	def valid_delivery_date?
 	    unless delivery_time.today?
 	      errors.add(:delivery_time, "date should be today!")

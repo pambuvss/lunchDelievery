@@ -7,10 +7,13 @@ before_action :validate_data, only:[:new, :create]
       @orders = Order.where(user_id: current_user.id)
           .order(delivery_time: :desc).paginate(page: params[:page], per_page: 9)
     elsif current_user&.seller?
+        @date = params[:date] ? Date.parse(params[:date]) : Date.today
+        @restaurant = current_user.restaurant
 
+        @total_lunches_cost = Order.total_lunches_cost(@restaurant, @date) 
+        @orders = Order.by_restaurant_and_date(@restaurant, @date)
+          .order(delivery_time: :desc).paginate(page: params[:page], per_page: 9)
     end
-      
-
   end
 
   def show
