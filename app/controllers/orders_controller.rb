@@ -2,6 +2,17 @@ class OrdersController < ApplicationController
 before_action :init_data, only:[:new, :create]
 before_action :validate_data, only:[:new, :create]
 
+  def index
+    if current_user&.customer?
+      @orders = Order.where(user_id: current_user.id)
+          .order(delivery_time: :desc).paginate(page: params[:page], per_page: 9)
+    elsif current_user&.seller?
+
+    end
+      
+
+  end
+
   def show
     @order = Order.find params[:id]
     @first,@main,@drink = @order.food
@@ -20,9 +31,7 @@ before_action :validate_data, only:[:new, :create]
   	@order.user = current_user
 
   	if @order.save
-  		OrdersList.new(order_id: @order.id, food_item_id: @first.id).save
-  		OrdersList.new(order_id: @order.id, food_item_id: @main.id).save
-  		OrdersList.new(order_id: @order.id, food_item_id: @drink.id).save
+  		OrdersList.create @order, @first, @main, @drink
   		redirect_to @order
   	else
   		render 'new'
