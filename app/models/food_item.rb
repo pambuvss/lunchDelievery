@@ -1,6 +1,7 @@
 class FoodItem < ApplicationRecord
   belongs_to :restaurant
   has_many :images, dependent: :destroy
+  has_many :order_list
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :price, :numericality => { :greater_than => 0 }, presence: true

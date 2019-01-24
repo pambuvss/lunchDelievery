@@ -2,6 +2,14 @@ class OrdersController < ApplicationController
 before_action :init_data, only:[:new, :create]
 before_action :validate_data, only:[:new, :create]
 
+  def show
+    @order = Order.find params[:id]
+    @first,@main,@drink = @order.food
+    unless @order.is_users_order? current_user
+      redirect_to root_path
+    end
+  end
+
   def new
   	@order = Order.new
   end
@@ -15,7 +23,7 @@ before_action :validate_data, only:[:new, :create]
   		OrdersList.new(order_id: @order.id, food_item_id: @first.id).save
   		OrdersList.new(order_id: @order.id, food_item_id: @main.id).save
   		OrdersList.new(order_id: @order.id, food_item_id: @drink.id).save
-  		redirect_to root_path
+  		redirect_to @order
   	else
   		render 'new'
   	end
@@ -32,7 +40,7 @@ before_action :validate_data, only:[:new, :create]
   end
 
   def init_data
-	@first = FoodItem.find params[:first]
+    @first = FoodItem.find params[:first]
   	@main = FoodItem.find params[:main]
   	@drink = FoodItem.find params[:drink]
   	@price = @first.price + @main.price + @drink.price

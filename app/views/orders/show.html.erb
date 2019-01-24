@@ -1,0 +1,33 @@
+<div class = "text-left float-left">
+<h2>Order</h2>
+	<p>Customer: <%= @order.user.name + " " + @order.user.email%></p>
+	<p>Restaurant <%= @order.restaurant.name%></p>
+	<p>Delivery address: <%= @order.address%></p>
+	<p>Delivery time: <%= @order.delivery_time.strftime('%A, %d.%m.%y, %H:%M ')%></p>
+	<p>Lunch:</p>
+	<table class = "table table-striped table-bordered table-hover">
+		    <thead>
+		      <tr>
+		        <th>Name</th>
+		        <th>Price</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+			<tr>
+				<td><%= link_to @first.name, @first %></td>
+				<td><%= @first.price %></td>
+			</tr>
+			<tr>
+				<td><%= link_to @main.name, @main %></td>
+				<td><%= @main.price %></td>
+			</tr>
+			<tr>
+				<td><%= link_to @drink.name, @drink %></td>
+				<td><%= @drink.price %></td>
+			</tr>
+			</tbody>
+	</table>
+	<p>Price of one lunch: <%= @order.price_of_one_lunch%></p>
+	<p>Count: <%= @order.count%> </p>
+	<h3>Total price: <%= @order.total_price%></h3>
+</div>
