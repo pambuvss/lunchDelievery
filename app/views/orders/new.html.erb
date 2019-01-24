@@ -1,14 +1,4 @@
-<script type="text/javascript">
-	$( document ).ready(function() {
-		$('#order_delivery_time_1i').parent().contents().filter(function () {
-     		return this.nodeType === 3; 
-		}).remove();
-		$('#order_delivery_time_1i').hide();
-		$('#order_delivery_time_2i').hide();
-		$('#order_delivery_time_3i').hide();	
-});
-
-</script>
+<%= javascript_include_tag( 'set_datetime_format.js' ) %>
 
 <h1>Let's finish your order</h1> 
 <%= simple_form_for @order, :html => {:multipart => true}, local: true do |form| %>
