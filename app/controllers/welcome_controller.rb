@@ -1,10 +1,12 @@
 class WelcomeController < ApplicationController
+	
 	def index
 		if current_user&.customer?
-			@restaurants = Restaurant.all.order(:name).paginate(page: params[:page], per_page: 14)
+			redirect_to restaurants_path
+		elsif current_user&.seller?
+			@restaurant = Restaurant.find current_user.restaurant_id
+			redirect_to @restaurant
 		end
 	end
-
-	private 
 
 end
