@@ -5,6 +5,8 @@ ruby '2.4.1'
 
 gem 'devise'
 gem 'bootstrap'
+gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'paperclip', '~> 5.1.0'
 gem 'aws-sdk', '~> 2.3'
 gem 'simple_form'

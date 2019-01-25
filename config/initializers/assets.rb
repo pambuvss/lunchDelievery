@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( set_datetime_format.js  preorder.js)
+Rails.application.config.assets.precompile += %w( set_datetime_format.js  preorder.js set_date_order_link.js)
