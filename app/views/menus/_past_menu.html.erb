@@ -7,10 +7,10 @@
 <div class = "row m-3 float-left">		
 	<% @food_first.each do |food_item|%>
 		<div class = "col text-left">
+			<img src=<%= food_item.images.empty? ? '/assets/first100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<h5>
   					<%= link_to food_item.name, food_item, class:"unlink"%>
 			</h5>
-			<img src=<%= food_item.images.empty? ? '/assets/first100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<p>price: <%= food_item.price%></p>
 		</div>
 	<% end%>
@@ -21,10 +21,10 @@
 <div class = "row m-3 float-left">		
 	<% @food_main.each do |food_item|%>
 		<div class = "col text-left">
+			<img src=<%= food_item.images.empty? ? '/assets/main100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<h5>
 					<%= link_to food_item.name, food_item, class:"unlink"%>
 			</h5>
-			<img src=<%= food_item.images.empty? ? '/assets/main100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<p>price: <%= food_item.price%></p>
 		</div>
 	<% end%>
@@ -35,10 +35,10 @@
 <div class = "row m-3 float-left">		
 	<% @food_drink.each do |food_item|%>
 		<div class = "col text-left">
+			<img src=<%= food_item.images.empty? ? '/assets/drink100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<h5>
 				<%= link_to food_item.name, food_item, class:"unlink"%>
   			</h5>
-			<img src=<%= food_item.images.empty? ? '/assets/drink100.jpg' : food_item.images.first.photo.url(:thumb)%>>
 			<p>price: <%= food_item.price%></p>
 		</div>
 	<% end%>

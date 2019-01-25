@@ -55,9 +55,9 @@
   <div class = "col text-left">
     <h1><%= @food_item.name %></h1> <br> 
     <p>Restaurant: <%= @food_item.restaurant.name %></p>
-    <p>Type: <%= @food_item.type_of_course%></p>
+    <p>Type: <%= @food_item.type_of_course.sub '_', ' '%></p>
     <p>Price: <%= @food_item.price%></p>
-    <p>Date: <%= @food_item.created_at.strftime("%a, %d. %m. %y")%></p>
+    <p>Date: <%= @food_item.created_at.strftime("%A, %d.%m.%y")%></p>
   </div>
 
 </div>  
