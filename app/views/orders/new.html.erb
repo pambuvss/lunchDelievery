@@ -1,4 +1,5 @@
 <%= javascript_include_tag( 'set_datetime_format.js' ) %>
+<%= javascript_include_tag( 'count_total_price.js' ) %>
 
 <h1>Let's finish your order</h1> 
 <%= simple_form_for @order, :html => {:multipart => true}, local: true do |form| %>
@@ -26,7 +27,7 @@
 			</tr>
 			</tbody>
 	</table>
-		<p>Price of one lunch: <%= @price%></p>
+		<p id="price" >Price of one lunch: <%= @price%></p>
 	</div>
 	<%= hidden_field_tag 'first', @first.id %>
 	<%= hidden_field_tag 'main', @main.id %>
@@ -35,6 +36,7 @@
     <%= form.input :address%>  
     <%= form.input :delivery_time%>
     <%= form.input :count%> 
+    <h4 id = "total_price" class = "text-left">Total price: </h4>
     <%= form.submit "Order", class: "btn btn-secondary"%>  
 </div>      
 <% end %>
