@@ -1,5 +1,4 @@
 </style>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">Lunch Delievery</a>
@@ -8,44 +7,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/orders/">My orders</a>
-              </li>
-              <% if current_user.seller?%>
-              <li class="nav-item">
-                <a class="nav-link" href=<%= customers_path %>>Customers </a>
-              </li>
-              <li class = "nav-item">
-                <%= link_to('Add food', new_food_item_path, class: "nav-link")  %>
-              </li>
-              <% end %>
-
-
-
-              <li class="dropdown">
-                <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link">
-                  <%=current_user.role + " " + current_user.name%>
-                  <%=current_user.seller? ? ", " + current_user.restaurant.name : ""%>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to('Manage account', edit_user_registration_path, class: "dropdown-item")  %></li>
-                  <li class="divider"></li>
-                  <li><li><%= link_to('Sign out', destroy_user_session_path, method: :delete, class: "dropdown-item") %></li></li>
-                </ul>
-              </li>
-
+            <% if current_user&.customer? %>
+              <%= render 'layouts/customer_menu'%>
+            <% elsif current_user&.seller?%>
+              <%= render 'layouts/seller_menu'%>
             <% else %>
-            <li class="nav-item">
-               <%= link_to('Sign in', new_user_session_path, class: "nav-link")  %>  
-            </li>
-            <li class="nav-item">
-                 <%= link_to('Sign up', new_user_registration_path, class: "nav-link")  %> 
-            </li>
+              <%= render 'layouts/visitor_menu'%>
             <% end %>
           </ul>
         </div>
