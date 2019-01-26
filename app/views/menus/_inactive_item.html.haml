@@ -1,0 +1,6 @@
+.col.text-left
+  = image_tag food_item.photo_thumb
+  %h5
+    = link_to food_item.name, food_item, class:"unlink"
+  %p
+    price: #{food_item.price}

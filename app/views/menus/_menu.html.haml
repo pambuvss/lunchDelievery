@@ -1,0 +1,4 @@
+- if @date.today? && current_user.customer?
+  = render 'today_menu'
+- else
+  = render 'past_menu'

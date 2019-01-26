@@ -1,0 +1,20 @@
+%h1
+  Orders of restaurant #{@restaurant.name}
+%h3= @date.strftime('%A, %d.%m.%y') + ", total lunches cost: " + @total_lunches_cost.to_s
+= render 'date_pick'
+.text-left
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Delivery address
+        %th Delivery time
+        %th Price
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.address
+          %td= order.delivery_time.strftime('%H:%M ')
+          %td= order.	total_price
+          %td= link_to "More information", order
+  .digg_pagination
+    = will_paginate @orders

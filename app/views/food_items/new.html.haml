@@ -1,0 +1,9 @@
+%h1 Add food for today
+= simple_form_for @food_item, :html => {:multipart => true}, local: true do |form|
+  .food-form
+    = form.error_notification
+    = form.input :name
+    = form.input :type_of_course, collection: [ "first_course", "main_course", "drink"]
+    = form.file_field :images, multiple: true, name: "images[photo][]"
+    = form.input :price
+    = form.submit "Add food", class: "btn btn-secondary"

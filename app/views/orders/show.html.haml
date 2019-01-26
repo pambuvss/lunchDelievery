@@ -1,0 +1,32 @@
+.text-left.float-left
+  %h2 Order
+  %p
+    Customer: #{@order.user.name + " " + @order.user.email}
+  %p
+    Restaurant #{@order.restaurant.name}
+  %p
+    Delivery address: #{@order.address}
+  %p
+    Delivery time: #{@order.delivery_time.strftime('%A, %d.%m.%y, %H:%M ')}
+  %p Lunch:
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Price
+    %tbody
+      %tr
+        %td= link_to @first.name, @first
+        %td= @first.price
+      %tr
+        %td= link_to @main.name, @main
+        %td= @main.price
+      %tr
+        %td= link_to @drink.name, @drink
+        %td= @drink.price
+  %p
+    Price of one lunch: #{@order.price_of_one_lunch}
+  %p
+    Count: #{@order.count}
+  %h3
+    Total price: #{@order.total_price}

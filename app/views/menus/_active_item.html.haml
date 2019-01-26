@@ -1,0 +1,9 @@
+.col.text-left
+  .radio
+    = image_tag food_item.photo_thumb
+    %h5
+      %label
+        = radio_button("",food_item.type_of_course.split('_').first, food_item.id)
+        = link_to food_item.name, food_item, class:"unlink"
+  %p
+    price: #{food_item.price}

@@ -1,0 +1,19 @@
+%h1
+  = "Menu of" + " " + @restaurant.name
+%h2= "For " + @date.strftime("%A %d.%m.%y")
+.text-left
+  %h4 First course:
+  .row.m-3.float-left
+    - @food_first.each do |food_item|
+      = render 'menus/inactive_item', food_item: food_item
+  .clearfix
+  %h4 Main course:
+  .row.m-3.float-left
+    - @food_main.each do |food_item|
+      = render 'menus/inactive_item', food_item: food_item
+  .clearfix
+  %h4 Drink:
+  .row.m-3.float-left
+    - @food_drink.each do |food_item|
+      = render 'menus/inactive_item', food_item: food_item
+  .clearfix

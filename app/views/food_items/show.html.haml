@@ -1,0 +1,36 @@
+:css
+  .img-width{
+    width:500px;
+  }
+.container
+  .row
+    - if @food_item.has_photos?
+      #carouselExampleControls.carousel.slide.col{"data-ride" => "carousel"}
+        .carousel-inner
+          - @food_item.images.each_with_index do |images, index|
+            - if index == 0
+              .carousel-item.active
+                = image_tag(images.photo.url(:average), class: 'd-block img-width')
+            - else
+              .carousel-item
+                = image_tag(images.photo.url(:average), class: 'd-block img-width')
+          %a.carousel-control-prev{"data-slide" => "prev", :href => "#carouselExampleControls", :role => "button"}
+            %span.carousel-control-prev-icon{"aria-hidden" => "true"}
+            %span.sr-only Previous
+          %a.carousel-control-next{"data-slide" => "next", :href => "#carouselExampleControls", :role => "button"}
+            %span.carousel-control-next-icon{"aria-hidden" => "true"}
+            %span.sr-only Next
+    - else
+      .col
+        = image_tag(@food_item.default_photo(:average), class: 'd-block img-width')
+    .col.text-left
+      %h1= @food_item.name
+      %br/
+      %p
+        Restaurant: #{@food_item.restaurant.name}
+      %p
+        Type: #{@food_item.type_of_course.sub '_', ' '}
+      %p
+        Price: #{@food_item.price}
+      %p
+        Date: #{@food_item.created_at.strftime("%A, %d.%m.%y")}

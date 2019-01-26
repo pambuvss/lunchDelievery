@@ -1,0 +1,4 @@
+= javascript_include_tag( 'set_date_order_link.js' )
+%div
+  %input#date{"data-date-format" => "dd mm yy", "data-provide" => "datepicker", :readonly => "true", :type => "text"}/
+  %a#change_date.btn.btn-secondary{:href => "/orders/"} Change date

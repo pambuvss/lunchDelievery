@@ -1,0 +1,7 @@
+%h1 let's choose restaurant:
+.float-left.text-left
+  - @restaurants.each do |restaurant|
+    %h5
+      = link_to(restaurant.name, restaurant_path(restaurant))
+  .digg_pagination
+    = will_paginate @restaurants

@@ -1,0 +1,18 @@
+%h1
+  = current_user.name + "'s orders"
+.text-left
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Restaurant
+        %th Delivery time
+        %th Price
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.restaurant.name
+          %td= order.delivery_time.strftime('%A, %d.%m.%y, %H:%M ')
+          %td= order.	total_price
+          %td= link_to "More information", order
+  .digg_pagination
+    = will_paginate @orders

@@ -1,6 +1,0 @@
-<% if @food_first.empty? || @food_main.empty? || @food_drink.empty?%>
-	<h1>Sorry, the restaurant didn't create the full menu for 
-	<%= @date.strftime("%A %d.%m.%y")%></h1>
-<% else %>
-	<%= render 'menu'%>
-<% end %>

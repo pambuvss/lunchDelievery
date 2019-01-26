@@ -1,5 +1,0 @@
-<% if current_user.customer?%>
-	<%= render 'index_customer'%>
-<% elsif current_user.seller? %>
-	<%= render 'index_restaurant'%>
-<% end %>

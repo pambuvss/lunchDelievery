@@ -1,0 +1,13 @@
+%h2 List of customers:
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Email
+      %th Name
+  %tbody
+    - @customers.each do |customer|
+      %tr
+        %td= customer.email
+        %td= customer.name
+.digg_pagination
+  = will_paginate @customers

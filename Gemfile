@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
 
+gem 'haml'
+gem "haml-rails", "~> 1.0"
 gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
@@ -50,6 +52,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
+  gem 'html2haml'
 end
 
 group :development do
