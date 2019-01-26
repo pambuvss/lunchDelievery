@@ -5,26 +5,10 @@
 </style>
 
 <div class = "container">
-
-
-
 <div class = "row">
   
-<% if @food_item.images.empty?%>
-
-  <div class = "col">
-    <img class = "d-block img-width"
-     src=
-      <%= if @food_item.drink? 
-            '/assets/drink500.jpg'
-          elsif @food_item.main_course?
-            '/assets/main500.jpg'
-          else
-            '/assets/first500.jpg'
-          end%>>
-  </div>
-<% else %>
-  <div id="carouselExampleControls" class="carousel slide col" data-ride="carousel">
+<% if @food_item.has_photos?%>
+<div id="carouselExampleControls" class="carousel slide col" data-ride="carousel">
           <div class="carousel-inner">
           <% @food_item.images.each_with_index do |images, index|%>  
             <% if index == 0%>
@@ -47,9 +31,13 @@
           </a>
   </div>
 </div>
+<% else %>
+  <div class = "col">
+    <img class = "d-block img-width"
+     src=
+      <%= @food_item.default_photo :average%>>
+  </div>
 <% end %>
-          
-
           
 
   <div class = "col text-left">
@@ -62,4 +50,3 @@
 
 </div>  
 </div>
-

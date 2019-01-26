@@ -12,6 +12,28 @@ class FoodItem < ApplicationRecord
 
   enum type_of_course: [:first_course, :main_course, :drink]
 
+  def has_photos?
+    not images.empty?
+  end
+
+  def default_photo format
+    if drink?
+      '/assets/drink_' + format.to_s + '.jpg'
+    elsif main_course?
+      '/assets/main_' + format.to_s + '.jpg'
+    else
+      '/assets/first_' + format.to_s + '.jpg'
+    end
+  end
+
+  def photo_thumb
+    if images.empty?
+      default_photo :thumb
+    else
+      images.first.photo.url(:thumb)
+    end
+  end
+
   def self.by_date_and_restaurant_id date, restaurant_id
     where(created_at: date.midnight..date.end_of_day)
       .where restaurant_id: restaurant_id

@@ -1,0 +1,13 @@
+<div class = "col text-left">
+			<img src=<%= food_item.photo_thumb %>>
+			<div class="radio">
+			<h5>
+				<label><input type="radio" 
+				name= <%= food_item.type_of_course.split('_').first%>
+  				value= <%= food_item.id%>>
+  					<%= link_to food_item.name, food_item, class:"unlink"%>
+  				</label>
+			</h5>
+			</div>
+			<p>price: <%= food_item.price%></p>
+		</div>
