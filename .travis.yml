@@ -1,0 +1,13 @@
+language: ruby
+rvm:
+  - 2.4.1
+addons:
+  - firefox: latest
+services:
+  - postgresql
+before_script:
+  - psql -c "CREATE ROLE myuser SUPERUSER LOGIN PASSWORD 'mypass';"
+script:
+  - "bundle exec rake db:create"
+  - "bundle exec rake db:migrate"
+  - "bundle exec rake"
