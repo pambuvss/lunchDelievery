@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
 
   def active_user_not_seller?
   		user = current_user
-		user and not user.seller?
+		not user or not user.seller?
   end
 
 end
